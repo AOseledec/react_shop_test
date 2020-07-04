@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Switch, Route, Link } from 'react-router-dom';
 
 import { CartPage, HomePage } from '../pages';
@@ -9,8 +8,8 @@ function App() {
     <div className="App">
       <nav>
         <ul>
-          <Link to='/'>HomePage</Link>
-          <Link to='/cart'>Cart</Link>
+          <li><Link to='/'>HomePage</Link></li>
+          <li><Link to='/cart'>Cart</Link></li>
         </ul>
       </nav>
       <Switch>
