@@ -8,19 +8,19 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case type.BOOKS_LOADED:
+    case type.FETCH_BOOKS_SUCCESS:
       return {
         books: action.payload,
         loading: false,
         error: null
       };
-    case type.BOOKS_REQUESTED:
+    case type.FETCH_BOOKS_REQUEST:
       return {
         books: [],
         error: null,
         loading: true
       };
-    case type.BOOKS_ERROR:
+    case type.FETCH_BOOKS_FAILURE:
       return {
         books: [],
         loading: false,
