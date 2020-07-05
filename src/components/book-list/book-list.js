@@ -5,18 +5,25 @@ import { withBookstoreService } from '../hoc';
 import { compose } from '../../utils';
 import { booksLoaded } from '../../actions';
 import BookListItem from '../book-list-item';
+import Spinner from '../spinner';
 
 import './book-list.css'
 
 const BookList = (props) => {
 
-  const { books, bookstoreService, booksLoaded }  = props
+  const { books, loading, bookstoreService, booksLoaded }  = props
   
   useEffect(() => {
-    const data = bookstoreService.getBooks()
-    booksLoaded(data)
+
+    bookstoreService.getBooks()
+      .then((data) => booksLoaded(data));
+    
     return () => {console.log('BookList unmount')}
   }, [ bookstoreService, booksLoaded ])
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     <ul className='book-list'>
@@ -33,7 +40,7 @@ const BookList = (props) => {
   )
 }
 
-const mapStateToProps = ({ books }) =>  ({ books });
+const mapStateToProps = ({ books, loading }) =>  ({ books, loading });
 const mapDispatchToProps = {
   booksLoaded
 }
