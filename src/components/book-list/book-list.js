@@ -3,30 +3,26 @@ import { connect } from 'react-redux';
 
 import { withBookstoreService } from '../hoc';
 import { compose } from '../../utils';
-import { booksLoaded } from '../../actions';
+import { booksLoaded, booksRequested, booksError } from '../../actions';
 import BookListItem from '../book-list-item';
 import Spinner from '../spinner';
 
 import './book-list.css'
+import ErrorIndicator from '../error-indicator';
 
 const BookList = (props) => {
 
-  const { books, loading, bookstoreService, booksLoaded }  = props
+  const { 
+    books,
+    loading,
+    error,
+    bookstoreService,
+    booksLoaded,
+    booksRequested,
+    booksError
+  }  = props
   
-  useEffect(() => {
-
-    bookstoreService.getBooks()
-      .then((data) => booksLoaded(data));
-    
-    return () => {console.log('BookList unmount')}
-  }, [ bookstoreService, booksLoaded ])
-
-  if (loading) {
-    return <Spinner />
-  }
-
-  return (
-    <ul className='book-list'>
+  let content = (<ul className='book-list'>
       {
         books.map((book) => {
           return (
@@ -36,13 +32,36 @@ const BookList = (props) => {
           );
         })
       }
-    </ul>
-  )
+    </ul>);
+
+  useEffect(() => {
+    booksRequested();
+    bookstoreService.getBooks()
+      .then((data) => booksLoaded(data))
+      .catch((error) => booksError(error));
+    
+    return () => {
+      content = null;
+      console.log('BookList unmount')
+    };
+
+  }, [
+    bookstoreService,
+    booksLoaded,
+    booksRequested,
+    booksError,
+  ]);
+
+  return  loading ? <Spinner/> :
+          error ? <ErrorIndicator/> : content;
+
 }
 
-const mapStateToProps = ({ books, loading }) =>  ({ books, loading });
+const mapStateToProps = ({ books, loading, error }) =>  ({ books, loading, error });
 const mapDispatchToProps = {
-  booksLoaded
+  booksLoaded,
+  booksRequested,
+  booksError
 }
 
 export default compose(
