@@ -6,6 +6,7 @@ import { compose } from '../../utils';
 import { booksLoaded } from '../../actions';
 import BookListItem from '../book-list-item';
 
+import './book-list.css'
 
 const BookList = (props) => {
 
@@ -18,7 +19,7 @@ const BookList = (props) => {
   }, [ bookstoreService, booksLoaded ])
 
   return (
-    <ul>
+    <ul className='book-list'>
       {
         books.map((book) => {
           return (
