@@ -27,6 +27,30 @@ const fetchBooks = ( bookstoreService, dispatch) => () => {
   .catch((error) => dispatch(booksError(error)));
 }
 
+const bookAddedToCart = (bookId) => {
+  return {
+    type: type.BOOK_ADDED_TO_CART,
+    payload: bookId
+  }
+}
+
+
+const bookRemovedFromCart = (id) => {
+  return {
+    type: type.BOOK_REMOVED_FROM_CART,
+    payload: id
+  }
+}
+const allBookRemovedFromCart = (id) => {
+  return {
+    type: type.ALL_BOOKS_REMOVED_FROM_CART,
+    payload: id
+  }
+}
+
 export {
-  fetchBooks
+  fetchBooks,
+  bookAddedToCart,
+  bookRemovedFromCart,
+  allBookRemovedFromCart,
 };
