@@ -61,7 +61,7 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete}) =>
   )
 }
 
-const matStateToProps = ({ orderTotal, cartItems }) => ({ total: orderTotal, items: cartItems})
+const matStateToProps = ({ shoppingCart: { orderTotal, cartItems }}) => ({ total: orderTotal, items: cartItems})
 
 const mapDispatchToProps = {
   onIncrease: bookAddedToCart,

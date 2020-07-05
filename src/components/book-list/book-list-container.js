@@ -43,7 +43,7 @@ const BookListContainer = (props) => {
 
 };
 
-const mapStateToProps = ({ books, loading, error }) => ({ books, loading, error });
+const mapStateToProps = ({ bookList: { books, loading, error }}) => ({ books, loading, error });
 
 const mapDispatchToProps = (dispatch, { bookstoreService }) => ({
   fetchBooks: fetchBooks(bookstoreService, dispatch),
