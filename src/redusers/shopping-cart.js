@@ -51,10 +51,16 @@ const updateOrder = (state, bookId, quantity) => {
   const item = cartItems[itemIndex];
 
   const newItem = updateCartItem(book, item, quantity)
+  const newCartItem = updateCartItems(cartItems, newItem, itemIndex)
   return {
-    orderTotal: 0,
-    cartItems: updateCartItems(cartItems, newItem, itemIndex)
+    orderTotal: updateOrderTotal(newCartItem),
+    cartItems: newCartItem
   };
+};
+
+const updateOrderTotal = (arr) => {
+  const callback = ( acumm, current ) => acumm + current.total;
+  return arr.reduce(callback, 0);
 };
 
 const updateShoppingCart = (state, action) => {
