@@ -1,11 +1,10 @@
 import React from 'react'
-import BookListItem from '../book-list-item'
+import BookListItemContainer from './book-list-item-container'
+
 
 const ItemPage = ({itemId}) => {
-    console.log(itemId)
-    return (
-   <BookListItem/>
-    )
+    return <BookListItemContainer itemId={1*itemId}/>
 }
 
-export default ItemPage;
+
+export default ItemPage

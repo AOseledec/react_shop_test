@@ -1,7 +1,8 @@
 import {
   FETCH_BOOKS_SUCCESS,
   FETCH_BOOKS_REQUEST,
-  FETCH_BOOKS_FAILURE
+  FETCH_BOOKS_FAILURE,
+
 } from '../actions/const';
 
 const updateBooklist = (state, action) => {
@@ -9,6 +10,7 @@ const updateBooklist = (state, action) => {
   if (state === undefined) {
     return {
       books: [],
+      book: null,
       loading: true,
       error: null
     }
@@ -18,6 +20,7 @@ const updateBooklist = (state, action) => {
     case FETCH_BOOKS_SUCCESS:
       return {
         books: action.payload,
+        book: null,
         loading: false,
         error: null
       };
@@ -25,6 +28,7 @@ const updateBooklist = (state, action) => {
     case FETCH_BOOKS_REQUEST:
       return {
         books: [],
+        book: null,
         error: null,
         loading: true
       };
@@ -32,6 +36,7 @@ const updateBooklist = (state, action) => {
     case FETCH_BOOKS_FAILURE:
       return {
         books: [],
+        book: null,
         loading: false,
         error: action.payload
       };

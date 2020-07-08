@@ -10,7 +10,7 @@ export const withBookstoreService = () => (Wrapped) => {
           (bookstoreService) => {
             // const serviceProps = mapMethodsToProps(bookstoreService)
             // return <Wrapped {...props} {...serviceProps} />
-            return <Wrapped bookstoreService={bookstoreService} />
+            return <Wrapped {...props} bookstoreService={bookstoreService} />
           }
         }
       </BookstoreConsumer>

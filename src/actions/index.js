@@ -34,7 +34,6 @@ const bookAddedToCart = (bookId) => {
   }
 }
 
-
 const bookRemovedFromCart = (id) => {
   return {
     type: type.BOOK_REMOVED_FROM_CART,

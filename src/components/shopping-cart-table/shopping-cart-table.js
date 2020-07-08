@@ -11,7 +11,6 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete}) =>
   const [showForm, setShowForm] = useState(false)
 
   const onShowForm = () => {
-    console.log(showForm)
     setShowForm(!showForm)
   }
 
