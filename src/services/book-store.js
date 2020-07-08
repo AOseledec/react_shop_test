@@ -14,11 +14,25 @@ class BookstoreService {
       price: 32,
       coverImage: 'http://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg'
     },
+    {
+      id: 3,
+      title: 'Alice in Wonderland',
+      author: 'A.B. Abrams',
+      price: 32,
+      coverImage: 'http://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg'
+    },
+    {
+      id: 4,
+      title: 'Alice in Wonderland',
+      author: 'A.B. Abrams',
+      price: 32,
+      coverImage: 'http://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg'
+    },
     
     
   ];
 
-  getBooks() {
+  getBooks(){
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (Math.random() > .9) {
@@ -26,6 +40,14 @@ class BookstoreService {
         } else {
           resolve(this.data)
         }
+      }, 500)
+    })
+  }
+
+  getBook (id) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.data.find(item => item.id === id))
       }, 500)
     })
   }
