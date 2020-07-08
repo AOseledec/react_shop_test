@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import './book-list-item.css'
 
 const BookListItem = ({ book, onAddaedToCart }) => {
-  const { id, title, author, price, coverImage } = book
+  const {id,title, author, price, coverImage } = book
   
   return (
   
@@ -13,7 +13,7 @@ const BookListItem = ({ book, onAddaedToCart }) => {
         <img src={coverImage} alt="cover"/>
       </div>
       <div className="book-details">
-      <Link to={`/item/${id}`} className="book-title">
+      <Link to={`/item/${title}`} className="book-title">
         {title}
       </Link>
        
