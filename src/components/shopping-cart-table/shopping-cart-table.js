@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 
 import { allBookRemovedFromCart, bookRemovedFromCart, bookAddedToCart } from '../../actions';
-
+import OrderButton from '../order-button'
+import OrderForm from '../order-form'
 import './shopping-cart-table.css';
 
 const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete}) => {
+
+  const [showForm, setShowForm] = useState(false)
+
+  const onShowForm = () => {
+    console.log(showForm)
+    setShowForm(!showForm)
+  }
 
   const renderRow = (item, ind) => {
     const { id, title, count, total } = item
@@ -56,7 +64,11 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete}) =>
 
       <div className="total">
         Total: ${total}
+        <OrderButton onClick={onShowForm}/>
       </div>
+      
+       {showForm && <OrderForm />}
+      
     </div>
   )
 }

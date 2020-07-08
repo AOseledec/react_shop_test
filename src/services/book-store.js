@@ -13,7 +13,9 @@ class BookstoreService {
       author: 'A.B. Abrams',
       price: 32,
       coverImage: 'http://abali.ru/wp-content/uploads/2012/01/staraya_oblozhka_knigi.jpg'
-    }
+    },
+    
+    
   ];
 
   getBooks() {
